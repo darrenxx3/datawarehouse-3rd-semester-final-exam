@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.3
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Generation Time: Dec 13, 2022 at 01:00 AM
+- Server version: 5.7.33
+- PHP Version: 7.4.19
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="dwh pasipasi wahana mobil" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="all cars">
+                CREATE TABLE `all cars` (
+                  `NO_CAR` varchar(10) NOT NULL,
+                  `TypeID` varchar(10) NOT NULL,
+                  `CarID` varchar(10) NOT NULL,
+                  `Manufacture` varchar(20) NOT NULL,
+                  `Model` varchar(150) NOT NULL,
+                  `Type` varchar(50) NOT NULL,
+                  `Engine_size` float NOT NULL,
+                  `Price` float NOT NULL,
+                  PRIMARY KEY (`NO_CAR`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="car sales">
+                CREATE TABLE `car sales` (
+                  `CustomerID` varchar(10) DEFAULT NULL,
+                  `SalesID` varchar(10) DEFAULT NULL,
+                  `CarID` varchar(10) DEFAULT NULL,
+                  `DateID` varchar(10) DEFAULT NULL,
+                  `Date` int(11) DEFAULT NULL,
+                  `Price` float DEFAULT NULL,
+                  `Quantity` int(11) DEFAULT NULL,
+                  KEY `CustomerID` (`CustomerID`),
+                  KEY `CarID` (`CarID`),
+                  KEY `DateID` (`DateID`),
+                  KEY `SalesID` (`SalesID`) USING BTREE,
+                  CONSTRAINT `car sales_ibfk_1` FOREIGN KEY (`DateID`) REFERENCES `phi pasipasi wahana mobil`.`date` (`DateID`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="car sales update">
+                CREATE TABLE `car sales update` (
+                  `cars_key` int(11) DEFAULT NULL,
+                  `sales_date` tinytext,
+                  `sales_amount` double DEFAULT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="customers and address">
+                CREATE TABLE `customers and address` (
+                  `NO_CUSTOMERS` varchar(10) NOT NULL,
+                  `AddressID` varchar(10) NOT NULL,
+                  `CustomerID` varchar(10) NOT NULL,
+                  `CustName` varchar(50) NOT NULL,
+                  `Address` varchar(100) NOT NULL,
+                  PRIMARY KEY (`NO_CUSTOMERS`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="dim_cars_2022">
+                CREATE TABLE `dim_cars_2022` (
+                  `cars_key` int(11) DEFAULT NULL,
+                  `cars_name` tinytext,
+                  `cars_color` tinytext,
+                  `cars_manufactur` tinytext,
+                  `valid_from` tinytext,
+                  `valid_to` tinytext,
+                  `current_gen` int(11) DEFAULT NULL,
+                  `current_gen_1` int(11) DEFAULT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="sales with cust transaction date">
+                CREATE TABLE `sales with cust transaction date` (
+                  `NO_TRANSACTION` varchar(10) NOT NULL,
+                  `DateID` varchar(10) NOT NULL,
+                  `SalesID` varchar(10) NOT NULL,
+                  `SalesName` varchar(50) NOT NULL,
+                  `Date` int(10) NOT NULL,
+                  `Month` varchar(10) NOT NULL,
+                  `Year` varchar(10) NOT NULL,
+                  `Quarter` varchar(10) NOT NULL,
+                  PRIMARY KEY (`NO_TRANSACTION`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'dwh pasipasi wahana mobil'
+    -->
+    <database name="dwh pasipasi wahana mobil">
+        <!-- Table all cars -->
+        <table name="all cars">
+            <column name="NO_CAR">1</column>
+            <column name="TypeID">TYT0001</column>
+            <column name="CarID">C00001</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">Raize</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">1</column>
+            <column name="Price">220000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">10</column>
+            <column name="TypeID">HYI0002</column>
+            <column name="CarID">C00010</column>
+            <column name="Manufacture">Hyundai</column>
+            <column name="Model">Stargazer</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">1.5</column>
+            <column name="Price">287000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">11</column>
+            <column name="TypeID">HD0001</column>
+            <column name="CarID">C00011</column>
+            <column name="Manufacture">Honda</column>
+            <column name="Model">CR-V</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">2</column>
+            <column name="Price">300000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">12</column>
+            <column name="TypeID">HD0002</column>
+            <column name="CarID">C00012</column>
+            <column name="Manufacture">Honda</column>
+            <column name="Model">BR-V</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">2</column>
+            <column name="Price">290000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">13</column>
+            <column name="TypeID">HD0003</column>
+            <column name="CarID">C00013</column>
+            <column name="Manufacture">Honda</column>
+            <column name="Model">Civic</column>
+            <column name="Type">Sedan</column>
+            <column name="Engine_size">1.6</column>
+            <column name="Price">287600000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">14</column>
+            <column name="TypeID">HD0004</column>
+            <column name="CarID">C00014</column>
+            <column name="Manufacture">Honda</column>
+            <column name="Model">Accord</column>
+            <column name="Type">Sedan</column>
+            <column name="Engine_size">2</column>
+            <column name="Price">299100000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">15</column>
+            <column name="TypeID">TYT0003</column>
+            <column name="CarID">C00015</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">Camry</column>
+            <column name="Type">Sedan</column>
+            <column name="Engine_size">2.4</column>
+            <column name="Price">450000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">16</column>
+            <column name="TypeID">TYT0004</column>
+            <column name="CarID">C00016</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">GR 86</column>
+            <column name="Type">Sport Sedan</column>
+            <column name="Engine_size">2.3</column>
+            <column name="Price">922000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">17</column>
+            <column name="TypeID">TYT0005</column>
+            <column name="CarID">C00019</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">Alphard</column>
+            <column name="Type">MPV</column>
+            <column name="Engine_size">3.5</column>
+            <column name="Price">1100000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">18</column>
+            <column name="TypeID">KA0001</column>
+            <column name="CarID">C00020</column>
+            <column name="Manufacture">KIA</column>
+            <column name="Model">Picanto</column>
+            <column name="Type">HatchBack</column>
+            <column name="Engine_size">1.1</column>
+            <column name="Price">139000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">19</column>
+            <column name="TypeID">TYT0006</column>
+            <column name="CarID">C00021</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">VellFire</column>
+            <column name="Type">MPV</column>
+            <column name="Engine_size">3.5</column>
+            <column name="Price">1200000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">2</column>
+            <column name="TypeID">TYT0002</column>
+            <column name="CarID">C00002</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">Veloz</column>
+            <column name="Type">MPV</column>
+            <column name="Engine_size">1.5</column>
+            <column name="Price">286000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">20</column>
+            <column name="TypeID">HD0005</column>
+            <column name="CarID">C00022</column>
+            <column name="Manufacture">Honda</column>
+            <column name="Model">HR-V</column>
+            <column name="Type">HatchBack</column>
+            <column name="Engine_size">1.4</column>
+            <column name="Price">320000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">21</column>
+            <column name="TypeID">TYT0007</column>
+            <column name="CarID">C00023</column>
+            <column name="Manufacture">Toyota</column>
+            <column name="Model">Hilux</column>
+            <column name="Type">Pick Up</column>
+            <column name="Engine_size">1.8</column>
+            <column name="Price">250000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">22</column>
+            <column name="TypeID">MZD0001</column>
+            <column name="CarID">C00024</column>
+            <column name="Manufacture">Mazda</column>
+            <column name="Model">CX-5</column>
+            <column name="Type">HatchBack</column>
+            <column name="Engine_size">1.4</column>
+            <column name="Price">540000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">23</column>
+            <column name="TypeID">MZD0002</column>
+            <column name="CarID">C00025</column>
+            <column name="Manufacture">Mazda</column>
+            <column name="Model">CX-9</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">1.8</column>
+            <column name="Price">675000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">3</column>
+            <column name="TypeID">DHT0001</column>
+            <column name="CarID">C00003</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Xenia R M.T</column>
+            <column name="Type">MPV</column>
+            <column name="Engine_size">1.3</column>
+            <column name="Price">216900000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">4</column>
+            <column name="TypeID">DHT0002</column>
+            <column name="CarID">C00004</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Terios R M.T</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">1.5</column>
+            <column name="Price">232000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">5</column>
+            <column name="TypeID">DHT0003</column>
+            <column name="CarID">C00005</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Ayla</column>
+            <column name="Type">HatchBack</column>
+            <column name="Engine_size">1.2</column>
+            <column name="Price">140000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">6</column>
+            <column name="TypeID">DHT0004</column>
+            <column name="CarID">C00006</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Sirion</column>
+            <column name="Type">HatchBack</column>
+            <column name="Engine_size">1.2</column>
+            <column name="Price">225000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">7</column>
+            <column name="TypeID">DHT0005</column>
+            <column name="CarID">C00007</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Grand Max </column>
+            <column name="Type">Pick Up</column>
+            <column name="Engine_size">1.5</column>
+            <column name="Price">145000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">8</column>
+            <column name="TypeID">DHT0006</column>
+            <column name="CarID">C00008</column>
+            <column name="Manufacture">Daihatsu</column>
+            <column name="Model">Grand Max</column>
+            <column name="Type">Mini Bus</column>
+            <column name="Engine_size">1.3</column>
+            <column name="Price">138000000</column>
+        </table>
+        <table name="all cars">
+            <column name="NO_CAR">9</column>
+            <column name="TypeID">HYI0001</column>
+            <column name="CarID">C00009</column>
+            <column name="Manufacture">Hyundai</column>
+            <column name="Model">Creta</column>
+            <column name="Type">SUV</column>
+            <column name="Engine_size">1.8</column>
+            <column name="Price">260500000</column>
+        </table>
+        <!-- Table car sales -->
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS001</column>
+            <column name="CarID">C00001</column>
+            <column name="DateID">D00001</column>
+            <column name="Date">8</column>
+            <column name="Price">220000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS010</column>
+            <column name="CarID">C00002</column>
+            <column name="DateID">D00010</column>
+            <column name="Date">19</column>
+            <column name="Price">286000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS011</column>
+            <column name="CarID">C00003</column>
+            <column name="DateID">D00011</column>
+            <column name="Date">1</column>
+            <column name="Price">216900000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS012</column>
+            <column name="CarID">C00004</column>
+            <column name="DateID">D00012</column>
+            <column name="Date">6</column>
+            <column name="Price">232000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS013</column>
+            <column name="CarID">C00005</column>
+            <column name="DateID">D00013</column>
+            <column name="Date">11</column>
+            <column name="Price">140000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS014</column>
+            <column name="CarID">C00006</column>
+            <column name="DateID">D00014</column>
+            <column name="Date">18</column>
+            <column name="Price">225000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS015</column>
+            <column name="CarID">C00007</column>
+            <column name="DateID">D00015</column>
+            <column name="Date">29</column>
+            <column name="Price">145000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS016</column>
+            <column name="CarID">C00008</column>
+            <column name="DateID">D00016</column>
+            <column name="Date">31</column>
+            <column name="Price">138000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS017</column>
+            <column name="CarID">C00009</column>
+            <column name="DateID">D00017</column>
+            <column name="Date">7</column>
+            <column name="Price">260500000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS018</column>
+            <column name="CarID">C00010</column>
+            <column name="DateID">D00018</column>
+            <column name="Date">10</column>
+            <column name="Price">287000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS019</column>
+            <column name="CarID">C00011</column>
+            <column name="DateID">D00019</column>
+            <column name="Date">13</column>
+            <column name="Price">300000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS002</column>
+            <column name="CarID">C00012</column>
+            <column name="DateID">D00002</column>
+            <column name="Date">10</column>
+            <column name="Price">290000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS020</column>
+            <column name="CarID">C00013</column>
+            <column name="DateID">D00020</column>
+            <column name="Date">19</column>
+            <column name="Price">287600000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS021</column>
+            <column name="CarID">C00014</column>
+            <column name="DateID">D00021</column>
+            <column name="Date">27</column>
+            <column name="Price">299100000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS022</column>
+            <column name="CarID">C00015</column>
+            <column name="DateID">D00022</column>
+            <column name="Date">25</column>
+            <column name="Price">450000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS023</column>
+            <column name="CarID">C00016</column>
+            <column name="DateID">D00023</column>
+            <column name="Date">3</column>
+            <column name="Price">922000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS003</column>
+            <column name="CarID">C00017</column>
+            <column name="DateID">D00003</column>
+            <column name="Date">31</column>
+            <column name="Price">NULL</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS004</column>
+            <column name="CarID">C00018</column>
+            <column name="DateID">D00004</column>
+            <column name="Date">21</column>
+            <column name="Price">NULL</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS005</column>
+            <column name="CarID">C00019</column>
+            <column name="DateID">D00005</column>
+            <column name="Date">4</column>
+            <column name="Price">1100000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS006</column>
+            <column name="CarID">C00020</column>
+            <column name="DateID">D00006</column>
+            <column name="Date">17</column>
+            <column name="Price">139000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS007</column>
+            <column name="CarID">C00021</column>
+            <column name="DateID">D00007</column>
+            <column name="Date">30</column>
+            <column name="Price">1200000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS008</column>
+            <column name="CarID">C00022</column>
+            <column name="DateID">D00008</column>
+            <column name="Date">25</column>
+            <column name="Price">320000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <table name="car sales">
+            <column name="CustomerID">NULL</column>
+            <column name="SalesID">SLS009</column>
+            <column name="CarID">C00023</column>
+            <column name="DateID">D00009</column>
+            <column name="Date">16</column>
+            <column name="Price">250000000</column>
+            <column name="Quantity">NULL</column>
+        </table>
+        <!-- Table car sales update -->
+        <table name="car sales update">
+            <column name="cars_key">1</column>
+            <column name="sales_date">20-05-2004</column>
+            <column name="sales_amount">100</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">2</column>
+            <column name="sales_date">10-09-2022</column>
+            <column name="sales_amount">300</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">3</column>
+            <column name="sales_date">12-08-2008</column>
+            <column name="sales_amount">200</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">6</column>
+            <column name="sales_date">19-04-2015</column>
+            <column name="sales_amount">55</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">9</column>
+            <column name="sales_date">25-04-2017</column>
+            <column name="sales_amount">24</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">8</column>
+            <column name="sales_date">30-11-2019</column>
+            <column name="sales_amount">98</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">1</column>
+            <column name="sales_date">21-5-2021</column>
+            <column name="sales_amount">23</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">1</column>
+            <column name="sales_date">30-06-2021</column>
+            <column name="sales_amount">15</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">3</column>
+            <column name="sales_date">11-05-2021</column>
+            <column name="sales_amount">76</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">6</column>
+            <column name="sales_date">15-02-2021</column>
+            <column name="sales_amount">82</column>
+        </table>
+        <table name="car sales update">
+            <column name="cars_key">7</column>
+            <column name="sales_date">03-09-2021</column>
+            <column name="sales_amount">45</column>
+        </table>
+        <!-- Table customers and address -->
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">1</column>
+            <column name="AddressID">ADRS001</column>
+            <column name="CustomerID">CUST001</column>
+            <column name="CustName">Terry Jerry</column>
+            <column name="Address">JL Indah Raya No.6</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">10</column>
+            <column name="AddressID">ADRS010</column>
+            <column name="CustomerID">CUST010</column>
+            <column name="CustName">Jimmy Fallon</column>
+            <column name="Address">JL Dusan 13c</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">11</column>
+            <column name="AddressID">ADRS011</column>
+            <column name="CustomerID">CUST011</column>
+            <column name="CustName">Hughie</column>
+            <column name="Address">JL Bunga Raya</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">12</column>
+            <column name="AddressID">ADRS012</column>
+            <column name="CustomerID">CUST012</column>
+            <column name="CustName">James</column>
+            <column name="Address">JL Gundam</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">13</column>
+            <column name="AddressID">ADRS013</column>
+            <column name="CustomerID">CUST013</column>
+            <column name="CustName">Farhan</column>
+            <column name="Address">JL Bolevard GS</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">14</column>
+            <column name="AddressID">ADRS014</column>
+            <column name="CustomerID">CUST014</column>
+            <column name="CustName">Abi</column>
+            <column name="Address">JL Gigac</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">15</column>
+            <column name="AddressID">ADRS015</column>
+            <column name="CustomerID">CUST015</column>
+            <column name="CustName">Dave</column>
+            <column name="Address">JL Gus gus</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">16</column>
+            <column name="AddressID">ADRS016</column>
+            <column name="CustomerID">CUST016</column>
+            <column name="CustName">Maverick</column>
+            <column name="Address">JL Fortuna</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">17</column>
+            <column name="AddressID">ADRS017</column>
+            <column name="CustomerID">CUST017</column>
+            <column name="CustName">Hansel</column>
+            <column name="Address">JL Kentang</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">18</column>
+            <column name="AddressID">ADRS018</column>
+            <column name="CustomerID">CUST018</column>
+            <column name="CustName">Umar</column>
+            <column name="Address">JL GG Geming</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">19</column>
+            <column name="AddressID">ADRS019</column>
+            <column name="CustomerID">CUST019</column>
+            <column name="CustName">Riski</column>
+            <column name="Address">JL Sapu No.55</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">2</column>
+            <column name="AddressID">ADRS002</column>
+            <column name="CustomerID">CUST002</column>
+            <column name="CustName">Saul Goodman</column>
+            <column name="Address">JL Panti Jomblang No.1</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">20</column>
+            <column name="AddressID">ADRS020</column>
+            <column name="CustomerID">CUST020</column>
+            <column name="CustName">Gregory</column>
+            <column name="Address">JL Cepu No.12</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">21</column>
+            <column name="AddressID">ADRS021</column>
+            <column name="CustomerID">CUST021</column>
+            <column name="CustName">Barry</column>
+            <column name="Address">JL Kemangi No.8</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">22</column>
+            <column name="AddressID">ADRS022</column>
+            <column name="CustomerID">CUST022</column>
+            <column name="CustName">Kumala</column>
+            <column name="Address">JL Rusa Timur No.3</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">23</column>
+            <column name="AddressID">ADRS023</column>
+            <column name="CustomerID">CUST023</column>
+            <column name="CustName">Franklin Gosh</column>
+            <column name="Address">JL Jiwa Raya No.5</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">3</column>
+            <column name="AddressID">ADRS003</column>
+            <column name="CustomerID">CUST003</column>
+            <column name="CustName">Walter White</column>
+            <column name="Address">JL Kendal 888</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">4</column>
+            <column name="AddressID">ADRS004</column>
+            <column name="CustomerID">CUST004</column>
+            <column name="CustName">Jesse Pinkman</column>
+            <column name="Address">JL Gurri 987</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">5</column>
+            <column name="AddressID">ADRS005</column>
+            <column name="CustomerID">CUST005</column>
+            <column name="CustName">Gus Fring</column>
+            <column name="Address">JL Husman</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">6</column>
+            <column name="AddressID">ADRS006</column>
+            <column name="CustomerID">CUST006</column>
+            <column name="CustName">Lalo Salamanca</column>
+            <column name="Address">JL Citra Raya</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">7</column>
+            <column name="AddressID">ADRS007</column>
+            <column name="CustomerID">CUST007</column>
+            <column name="CustName">Timmy Turner</column>
+            <column name="Address">JL Freda 555</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">8</column>
+            <column name="AddressID">ADRS008</column>
+            <column name="CustomerID">CUST008</column>
+            <column name="CustName">Tupac Anderson</column>
+            <column name="Address">JL Silop 999</column>
+        </table>
+        <table name="customers and address">
+            <column name="NO_CUSTOMERS">9</column>
+            <column name="AddressID">ADRS009</column>
+            <column name="CustomerID">CUST009</column>
+            <column name="CustName">Buzz Clark</column>
+            <column name="Address">JL Perjuangan</column>
+        </table>
+        <!-- Table dim_cars_2022 -->
+        <table name="dim_cars_2022">
+            <column name="cars_key">1</column>
+            <column name="cars_name">MX5</column>
+            <column name="cars_color">Black</column>
+            <column name="cars_manufactur">Mazda</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">2</column>
+            <column name="cars_name">LGX</column>
+            <column name="cars_color">Grey</column>
+            <column name="cars_manufactur">Toyota</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">3</column>
+            <column name="cars_name">Vios</column>
+            <column name="cars_color">White</column>
+            <column name="cars_manufactur">Toyota</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">4</column>
+            <column name="cars_name">Yaris GR</column>
+            <column name="cars_color">Red Matte</column>
+            <column name="cars_manufactur">Toyota</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">5</column>
+            <column name="cars_name">Supra</column>
+            <column name="cars_color">Lavender</column>
+            <column name="cars_manufactur">Toyota</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">6</column>
+            <column name="cars_name">Expresso</column>
+            <column name="cars_color">Midnight Blue</column>
+            <column name="cars_manufactur">Suzuki</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">7</column>
+            <column name="cars_name">Panther</column>
+            <column name="cars_color">Yellow</column>
+            <column name="cars_manufactur">Isuzu</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">8</column>
+            <column name="cars_name">MUX</column>
+            <column name="cars_color">Red glossy</column>
+            <column name="cars_manufactur">Isuzu</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">9</column>
+            <column name="cars_name">RX7</column>
+            <column name="cars_color">Yello white</column>
+            <column name="cars_manufactur">Mazda</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <table name="dim_cars_2022">
+            <column name="cars_key">10</column>
+            <column name="cars_name">Lancer EVO IX</column>
+            <column name="cars_color">Green Lime</column>
+            <column name="cars_manufactur">Mitsubishi</column>
+            <column name="valid_from">01-01-2000</column>
+            <column name="valid_to">31-12-3000</column>
+            <column name="current_gen">1</column>
+            <column name="current_gen_1">NULL</column>
+        </table>
+        <!-- Table sales with cust transaction date -->
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">1</column>
+            <column name="DateID">D00001</column>
+            <column name="SalesID">SLS001</column>
+            <column name="SalesName">Andi</column>
+            <column name="Date">8</column>
+            <column name="Month">May</column>
+            <column name="Year">2021</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">10</column>
+            <column name="DateID">D00010</column>
+            <column name="SalesID">SLS010</column>
+            <column name="SalesName">Erick</column>
+            <column name="Date">19</column>
+            <column name="Month">October</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q4</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">11</column>
+            <column name="DateID">D00011</column>
+            <column name="SalesID">SLS011</column>
+            <column name="SalesName">Jennifer lesmen</column>
+            <column name="Date">1</column>
+            <column name="Month">November</column>
+            <column name="Year">2019</column>
+            <column name="Quarter">Q4</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">12</column>
+            <column name="DateID">D00012</column>
+            <column name="SalesID">SLS012</column>
+            <column name="SalesName">Rahmat</column>
+            <column name="Date">6</column>
+            <column name="Month">June</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">13</column>
+            <column name="DateID">D00013</column>
+            <column name="SalesID">SLS013</column>
+            <column name="SalesName">Hisar</column>
+            <column name="Date">11</column>
+            <column name="Month">April</column>
+            <column name="Year">2021</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">14</column>
+            <column name="DateID">D00014</column>
+            <column name="SalesID">SLS014</column>
+            <column name="SalesName">Firman Gunawan</column>
+            <column name="Date">18</column>
+            <column name="Month">July</column>
+            <column name="Year">2022</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">15</column>
+            <column name="DateID">D00015</column>
+            <column name="SalesID">SLS015</column>
+            <column name="SalesName">Pedro</column>
+            <column name="Date">29</column>
+            <column name="Month">January</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q1</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">16</column>
+            <column name="DateID">D00016</column>
+            <column name="SalesID">SLS016</column>
+            <column name="SalesName">Pascal</column>
+            <column name="Date">31</column>
+            <column name="Month">May</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">17</column>
+            <column name="DateID">D00017</column>
+            <column name="SalesID">SLS017</column>
+            <column name="SalesName">Gilang</column>
+            <column name="Date">7</column>
+            <column name="Month">August</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">18</column>
+            <column name="DateID">D00018</column>
+            <column name="SalesID">SLS018</column>
+            <column name="SalesName">Jaya</column>
+            <column name="Date">10</column>
+            <column name="Month">November</column>
+            <column name="Year">2021</column>
+            <column name="Quarter">Q4</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">19</column>
+            <column name="DateID">D00019</column>
+            <column name="SalesID">SLS019</column>
+            <column name="SalesName">Humas</column>
+            <column name="Date">13</column>
+            <column name="Month">April</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">2</column>
+            <column name="DateID">D00002</column>
+            <column name="SalesID">SLS002</column>
+            <column name="SalesName">Paparazi</column>
+            <column name="Date">10</column>
+            <column name="Month">August</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">20</column>
+            <column name="DateID">D00020</column>
+            <column name="SalesID">SLS020</column>
+            <column name="SalesName">Yuta Kurniawan</column>
+            <column name="Date">19</column>
+            <column name="Month">May</column>
+            <column name="Year">2017</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">21</column>
+            <column name="DateID">D00021</column>
+            <column name="SalesID">SLS021</column>
+            <column name="SalesName">Susan</column>
+            <column name="Date">27</column>
+            <column name="Month">September</column>
+            <column name="Year">2020</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">22</column>
+            <column name="DateID">D00022</column>
+            <column name="SalesID">SLS022</column>
+            <column name="SalesName">Jimmy Ferguson</column>
+            <column name="Date">25</column>
+            <column name="Month">December</column>
+            <column name="Year">2019</column>
+            <column name="Quarter">Q4</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">23</column>
+            <column name="DateID">D00023</column>
+            <column name="SalesID">SLS023</column>
+            <column name="SalesName">Fosha</column>
+            <column name="Date">3</column>
+            <column name="Month">March</column>
+            <column name="Year">2016</column>
+            <column name="Quarter">Q1</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">3</column>
+            <column name="DateID">D00003</column>
+            <column name="SalesID">SLS003</column>
+            <column name="SalesName">Ahmad </column>
+            <column name="Date">31</column>
+            <column name="Month">June</column>
+            <column name="Year">2022</column>
+            <column name="Quarter">Q2</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">4</column>
+            <column name="DateID">D00004</column>
+            <column name="SalesID">SLS004</column>
+            <column name="SalesName">Joy</column>
+            <column name="Date">21</column>
+            <column name="Month">January</column>
+            <column name="Year">2019</column>
+            <column name="Quarter">Q1</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">5</column>
+            <column name="DateID">D00005</column>
+            <column name="SalesID">SLS005</column>
+            <column name="SalesName">Reyhan</column>
+            <column name="Date">4</column>
+            <column name="Month">July</column>
+            <column name="Year">2022</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">6</column>
+            <column name="DateID">D00006</column>
+            <column name="SalesID">SLS006</column>
+            <column name="SalesName">Adit</column>
+            <column name="Date">17</column>
+            <column name="Month">September</column>
+            <column name="Year">2019</column>
+            <column name="Quarter">Q3</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">7</column>
+            <column name="DateID">D00007</column>
+            <column name="SalesID">SLS007</column>
+            <column name="SalesName">Jessica</column>
+            <column name="Date">30</column>
+            <column name="Month">December</column>
+            <column name="Year">2018</column>
+            <column name="Quarter">Q4</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">8</column>
+            <column name="DateID">D00008</column>
+            <column name="SalesID">SLS008</column>
+            <column name="SalesName">Suhendra</column>
+            <column name="Date">25</column>
+            <column name="Month">February</column>
+            <column name="Year">2018</column>
+            <column name="Quarter">Q1</column>
+        </table>
+        <table name="sales with cust transaction date">
+            <column name="NO_TRANSACTION">9</column>
+            <column name="DateID">D00009</column>
+            <column name="SalesID">SLS009</column>
+            <column name="SalesName">Chandra</column>
+            <column name="Date">16</column>
+            <column name="Month">March</column>
+            <column name="Year">2019</column>
+            <column name="Quarter">Q1</column>
+        </table>
+    </database>
+</pma_xml_export>

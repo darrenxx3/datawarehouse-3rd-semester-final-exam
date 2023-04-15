@@ -1,0 +1,34 @@
+
+/*  <jp:mondrianQuery 
+id="query01" 
+jdbcDriver="com.mysql.jdbc.Driver" 
+jdbcUrl="jdbc:mysql://localhost/foodmart?user=root&password=" 
+catalogUri="/WEB-INF/queries/FoodMart.xml"
+   >  */
+
+
+
+/* select
+  {[Measures].[Unit Sales], [Measures].[Store Cost], [Measures].[Store Sales]} on columns,
+  {([Promotion Media].[All Media], [Product].[All Products])} ON rows
+from Sales
+where ([Time].[1997]) */
+
+
+
+
+
+select
+  {[Measures].[SalesID], [Measures].[CarID], [Measures].[Price]} on columns,
+  {([Promotion Media].[All Media], [dim_cars_2022].[sales with cust transaction])} ON rows
+from car sales
+where ([Date].[10])
+
+timestamp 5.21
+
+
+phiquery
+select
+  {[Measures].[Total Penjualan], [Measures].[Total Biaya], [Measures].[Total Modal], [Measures].[Untung Bersih]} ON COLUMNS,
+  {[Karyawan].[Semua Karyawan]} ON rows
+from Sales
